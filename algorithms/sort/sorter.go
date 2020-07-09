@@ -5,12 +5,12 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/bournex/basic_training/sort/heapsort"
-	"github.com/bournex/basic_training/sort/insertsort"
-	"github.com/bournex/basic_training/sort/mergesort"
-	"github.com/bournex/basic_training/sort/quicksort"
-	"github.com/bournex/basic_training/sort/selectsort"
-	"github.com/bournex/basic_training/sort/shellsort"
+	"github.com/bournex/basic_training/algorithms/sort/heapsort"
+	"github.com/bournex/basic_training/algorithms/sort/insertsort"
+	"github.com/bournex/basic_training/algorithms/sort/mergesort"
+	"github.com/bournex/basic_training/algorithms/sort/quicksort"
+	"github.com/bournex/basic_training/algorithms/sort/selectsort"
+	"github.com/bournex/basic_training/algorithms/sort/shellsort"
 )
 
 // helper functions
