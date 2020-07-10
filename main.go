@@ -10,7 +10,5 @@ func main() {
 	print := flag.Bool("p", false, "print detail")
 	flag.Parse()
 
-	// sort.AlgSort(*print)
-
 	structures.StructureEntry(*print)
 }

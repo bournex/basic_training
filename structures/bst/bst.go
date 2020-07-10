@@ -1,24 +1,23 @@
 package bst
 
-import "github.com/bournex/basic_training/structures/queue"
+import (
+	"github.com/bournex/basic_training/structures/base"
+	"github.com/bournex/basic_training/structures/queue"
+)
 
 // ------------------------PUBLIC--------------
-type Comparable interface {
-	Compare(interface{}) int
-	ToString() string
-}
 
 type VBst interface {
 	// 成功返回nil
 	// 失败返回error信息
-	Insert(key Comparable, value interface{}) error
+	Insert(key base.Comparable, value interface{}) error
 	// 成功返回指定value,nil
 	// 未找到返回nil,nil
 	// 失败返回nil,error信息
-	Find(key Comparable) (interface{}, error)
+	Find(key base.Comparable) (interface{}, error)
 	// 成功返回nil
 	// 失败返回error信息
-	Delete(key Comparable) error
+	Delete(key base.Comparable) error
 	// 树转换为字符串
 	ToString() string
 }
@@ -28,15 +27,14 @@ func MakeBst() VBst {
 }
 
 //--------------------PRIVATE---------------
-
 type bstNode struct {
 	left  *bstNode
 	right *bstNode
-	key   Comparable
+	key   base.Comparable
 	value interface{}
 }
 
-func (node *bstNode) Compare(key interface{}) int {
+func (node *bstNode) Compare(key base.Comparable) int {
 	return node.key.Compare(key)
 }
 
@@ -45,13 +43,13 @@ type binarySearchTree struct {
 	depth int
 }
 
-func (bst *binarySearchTree) Insert(key Comparable, value interface{}) error {
+func (bst *binarySearchTree) Insert(key base.Comparable, value interface{}) error {
 
 	bst.root = bst.insertImpl(bst.root, key, value)
 	return nil
 }
 
-func (bst *binarySearchTree) insertImpl(p *bstNode, key Comparable, value interface{}) *bstNode {
+func (bst *binarySearchTree) insertImpl(p *bstNode, key base.Comparable, value interface{}) *bstNode {
 	if p == nil {
 		return &bstNode{key: key, value: value}
 	}
@@ -67,7 +65,7 @@ func (bst *binarySearchTree) insertImpl(p *bstNode, key Comparable, value interf
 	return p
 }
 
-func (b *binarySearchTree) Find(key Comparable) (interface{}, error) {
+func (b *binarySearchTree) Find(key base.Comparable) (interface{}, error) {
 	tmp := b.root
 	for tmp != nil {
 		c := tmp.Compare(key)
@@ -82,7 +80,7 @@ func (b *binarySearchTree) Find(key Comparable) (interface{}, error) {
 	return nil, nil
 }
 
-func (b *binarySearchTree) Delete(key Comparable) error {
+func (b *binarySearchTree) Delete(key base.Comparable) error {
 	// 分四种情况
 	// 待删除节点左右子树都为空，直接删除该节点
 	// 待删除节点有左子树，右子树为空；将左子树挂到父节点
@@ -92,7 +90,7 @@ func (b *binarySearchTree) Delete(key Comparable) error {
 	return nil
 }
 
-func (b *binarySearchTree) deleteImpl(p *bstNode, key Comparable) *bstNode {
+func (b *binarySearchTree) deleteImpl(p *bstNode, key base.Comparable) *bstNode {
 	if p == nil {
 		return p
 	}
