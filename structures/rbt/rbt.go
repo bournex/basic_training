@@ -6,11 +6,11 @@ import "github.com/bournex/basic_training/structures/base"
 type VRbt interface {
 	// 成功返回nil
 	// 失败返回error信息
-	Insert(key base.Comparable, value interface{}) error
+	Insert(key base.Comparable, value interface{})
 	// 成功返回指定value,nil
 	// 未找到返回nil,nil
 	// 失败返回nil,error信息
-	Find(key base.Comparable) (interface{}, error)
+	Find(key base.Comparable) interface{}
 	// 成功返回nil
 	// 失败返回error信息
 	Delete(key base.Comparable) error
@@ -72,14 +72,13 @@ func (rbt *redBlackTree) flipColor(p *rbtNode) *rbtNode {
 	return p
 }
 
-func (rbt *redBlackTree) Insert(key base.Comparable, value interface{}) error {
+func (rbt *redBlackTree) Insert(key base.Comparable, value interface{}) {
 	// 原则如下
 	// 1、任意节点只能有一条红色链接
 	// 2、红色链接只能出现在节点的左子节点，或与父节点的链接
 	// 3、新加入节点的颜色都是红色的
 	rbt.root = rbt.insertImpl(rbt.root, key, value)
 	rbt.root.color = BLACK
-	return nil
 }
 
 func (p *rbtNode) IsRed() bool {
@@ -95,7 +94,7 @@ func (rbt *redBlackTree) insertImpl(p *rbtNode, key base.Comparable, value inter
 		return &rbtNode{key: key, value: value, color: RED}
 	}
 
-	c := p.Compare(key)
+	c := p.key.Compare(key)
 	if c > 0 {
 		p.left = rbt.insertImpl(p.left, key, value)
 	} else if c < 0 {
@@ -119,23 +118,23 @@ func (rbt *redBlackTree) insertImpl(p *rbtNode, key base.Comparable, value inter
 	return p
 }
 
-func (rbt *redBlackTree) Find(key base.Comparable) (interface{}, error) {
+func (rbt *redBlackTree) Find(key base.Comparable) interface{} {
 	if rbt.root == nil {
-		return nil, nil
+		return nil
 	}
 
 	tmp := rbt.root
 	for tmp != nil {
-		c := tmp.Compare(key)
+		c := tmp.key.Compare(key)
 		if c > 0 {
 			tmp = tmp.left
 		} else if c < 0 {
 			tmp = tmp.right
 		} else {
-			return tmp.value, nil
+			return tmp.value
 		}
 	}
-	return nil, nil
+	return nil
 }
 
 func (rbt *redBlackTree) Delete(key base.Comparable) error {
@@ -146,12 +145,4 @@ func (rbt *redBlackTree) Delete(key base.Comparable) error {
 func (rbt *redBlackTree) ToString() string {
 	// TODO
 	return ""
-}
-
-func (node *rbtNode) Compare(key base.Comparable) int {
-	return node.key.Compare(key)
-}
-
-func (node *rbtNode) ToString() string {
-	return node.key.ToString()
 }

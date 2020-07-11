@@ -10,14 +10,14 @@ import (
 type VBst interface {
 	// 成功返回nil
 	// 失败返回error信息
-	Insert(key base.Comparable, value interface{}) error
+	Insert(key base.Comparable, value interface{})
 	// 成功返回指定value,nil
 	// 未找到返回nil,nil
 	// 失败返回nil,error信息
-	Find(key base.Comparable) (interface{}, error)
+	Find(key base.Comparable) interface{}
 	// 成功返回nil
 	// 失败返回error信息
-	Delete(key base.Comparable) error
+	Delete(key base.Comparable)
 	// 树转换为字符串
 	ToString() string
 }
@@ -43,10 +43,8 @@ type binarySearchTree struct {
 	depth int
 }
 
-func (bst *binarySearchTree) Insert(key base.Comparable, value interface{}) error {
-
+func (bst *binarySearchTree) Insert(key base.Comparable, value interface{}) {
 	bst.root = bst.insertImpl(bst.root, key, value)
-	return nil
 }
 
 func (bst *binarySearchTree) insertImpl(p *bstNode, key base.Comparable, value interface{}) *bstNode {
@@ -65,7 +63,7 @@ func (bst *binarySearchTree) insertImpl(p *bstNode, key base.Comparable, value i
 	return p
 }
 
-func (b *binarySearchTree) Find(key base.Comparable) (interface{}, error) {
+func (b *binarySearchTree) Find(key base.Comparable) interface{} {
 	tmp := b.root
 	for tmp != nil {
 		c := tmp.Compare(key)
@@ -74,20 +72,19 @@ func (b *binarySearchTree) Find(key base.Comparable) (interface{}, error) {
 		} else if c < 0 {
 			tmp = tmp.right
 		} else {
-			return tmp.value, nil
+			return tmp.value
 		}
 	}
-	return nil, nil
+	return nil
 }
 
-func (b *binarySearchTree) Delete(key base.Comparable) error {
+func (b *binarySearchTree) Delete(key base.Comparable) {
 	// 分四种情况
 	// 待删除节点左右子树都为空，直接删除该节点
 	// 待删除节点有左子树，右子树为空；将左子树挂到父节点
 	// 待删除节点有右子树，左子树为空；将右子树挂到父节点
 	// 待删除节点有左、右子树均不为空；在右子树中找到最小值（或左子树的最大值），上升到待删除节点作为新节点
 	b.root = b.deleteImpl(b.root, key)
-	return nil
 }
 
 func (b *binarySearchTree) deleteImpl(p *bstNode, key base.Comparable) *bstNode {
