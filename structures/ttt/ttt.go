@@ -92,19 +92,19 @@ func (t *Ttt) mergeNode(p, q *tNode) *tNode {
 		r := &tNode{key1: p.key2, value1: p.value2, typ: TwoNode}
 
 		if c1 > 0 {
-			// q<p<r,rise p
+			// q<p<r,rise p up
 			r.left, r.right = p.mid, p.right
 			p.left, p.right = q, r
 			p.mid = nil
 			return p
 		} else if c1 < 0 && c2 > 0 {
-			// p<q<r,rise q
+			// p<q<r,rise q up
 			p.right, r.left = q.left, q.right
 			q.left, q.right = p, r
 			p.mid = nil
 			return q
 		} else if c2 < 0 {
-			// p<r<q,rise r
+			// p<r<q,rise r up
 			p.right = p.mid
 			p.mid = nil
 			r.left, r.right = p, q
