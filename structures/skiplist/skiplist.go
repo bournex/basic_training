@@ -37,10 +37,18 @@ type skipNode struct {
 	next  []*skipNode
 }
 
+// 总体思路
+// 每次插入节点时，随机生成节点的级别，级别代表指针数量，然后从高到低逐级加入到链表中
+// 查找时首先从高级别进行检索，逐级缩小检索范围，类似n分查找
+// 跳表达不到严格的平衡，最差情况会退化成纯链表的O(n)复杂度，但其具备一定的平衡性，且实现比一般平衡树简单
+// 当最大级别为m，元素数量最大为n时，如果有2^m > n，则可能会出现最优性能O(lgn)
 type skipList struct {
+	// 跳表的最高层级，不宜过高，指针占用空间过多
 	maxlvl int
-	head   []*skipNode
-	cnt    []int
+	// 跳表链表头
+	head []*skipNode
+	// 各级链表中元素数量
+	cnt []int
 }
 
 func (sl *skipList) constructSkipList(maxlvl int) {
@@ -162,6 +170,7 @@ func (sl *skipList) Find(key base.Comparable) interface{} {
 	return nil
 }
 
+// 脱链时先找到在每一级上，小于节点值的上界指针，遍历完成删除
 func (sl *skipList) Delete(key base.Comparable) {
 
 	index := sl.maxlvl - 1
