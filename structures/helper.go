@@ -7,13 +7,15 @@ import (
 	"time"
 
 	"github.com/bournex/basic_training/structures/bst"
+	"github.com/bournex/basic_training/structures/heap"
 	"github.com/bournex/basic_training/structures/skiplist"
 )
 
 // StructureEntry StructureEntry
 func StructureEntry(bprint bool) {
 	// testBst()
-	testSkipList()
+	// testSkipList()
+	testHeap()
 }
 
 func testBst() {
@@ -51,6 +53,28 @@ func testSkipList() {
 
 	sl.Delete(Student{no: 10})
 	fmt.Printf(sl.ToString())
+}
+
+func testHeap() {
+	h := heap.MakeHeap(10)
+	h.Insert(Student{no: 4})
+	h.Insert(Student{no: 1})
+	h.Insert(Student{no: 5})
+	h.Insert(Student{no: 2})
+	h.Insert(Student{no: 3})
+
+	fmt.Println(h.ToString())
+
+	for i := 0; i < 6; i++ {
+		fmt.Println("round ", i+1, " extra max-----------------")
+		v, err := h.ExtraMax()
+		if err != nil {
+			fmt.Println("error occur,", err.Error())
+		} else {
+			fmt.Printf("max in heap [%s] extra\n", v.ToString())
+		}
+		fmt.Println(h.ToString())
+	}
 }
 
 type Student struct {
