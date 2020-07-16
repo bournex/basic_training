@@ -5,6 +5,8 @@ import (
 	"github.com/bournex/basic_training/structures/queue"
 )
 
+// 二叉查找树实现
+
 // ------------------------PUBLIC--------------
 
 type VBst interface {

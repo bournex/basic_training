@@ -4,6 +4,8 @@ import (
 	"github.com/bournex/basic_training/structures/base"
 )
 
+// 堆数据结构实现
+
 type VHeap interface {
 	Insert(base.Comparable) error
 	ExtraMax() (base.Comparable, error)

@@ -2,6 +2,8 @@ package rbt
 
 import "github.com/bournex/basic_training/structures/base"
 
+// 红黑树实现
+
 // Public----------------
 type VRbt interface {
 	// 成功返回nil

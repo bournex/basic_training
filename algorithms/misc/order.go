@@ -8,6 +8,7 @@ type VNode interface {
 	ToString() string
 }
 
+// 先序遍历
 func PreOrder(p VNode) {
 	if p == nil {
 		return
@@ -18,6 +19,7 @@ func PreOrder(p VNode) {
 	PreOrder(p.Right())
 }
 
+// 中序遍历
 func InOrder(p VNode) {
 	if p == nil {
 		return
@@ -28,6 +30,7 @@ func InOrder(p VNode) {
 	PreOrder(p.Right())
 }
 
+// 后序遍历
 func PostOrder(p VNode) {
 	if p == nil {
 		return

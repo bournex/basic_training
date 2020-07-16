@@ -2,7 +2,7 @@ package ttt
 
 import "github.com/bournex/basic_training/structures/base"
 
-// two-three tree
+// two-three tree 2-3树实现
 
 type VTtt interface {
 	// 成功返回nil

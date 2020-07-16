@@ -2,6 +2,8 @@ package queue
 
 import "errors"
 
+// FIFO队列实现
+
 var (
 	QUEUE_FULL  = errors.New("queue is full")
 	QUEUE_EMPTY = errors.New("queue is empty")

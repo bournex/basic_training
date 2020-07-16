@@ -1,18 +1,23 @@
 package str
 
 // Least-Significant-Digit First，低位优先字符串排序
-func Lsd(ss []string) {
-	// 思路
-	// 假定前提，输入的字符串长度是相同的
-	// 从后向前按ascii进行排序
+// 其基础是键索引计数法，对字符串的每固定index位置进行索引
+// 从后向前逐渐完成字符串数组的排序
+// ss - 输入字符串数组
+// m  - ss中定长字符串的长度
+// 排序过程示例，竖线右侧为排序好的byte位
+// aba - ab|a - c|aa - |aaa
+// aab - ca|a - a|aa - |aab
+// abc - aa|a - a|ab - |aba
+// caa - aa|b - a|ba - |abc
+// aaa - ab|c - a|bc - |caa
+func Lsd(ss []string, m int) {
 
 	// 数组长度
 	n := len(ss)
 	if n == 0 {
 		return
 	}
-	// 单个字符串长度
-	m := len(ss[0])
 
 	// 使用一个长度为256的整形数组，用于统计单列字符的分布情况，也保存分量排序后的起始位置
 	// 使用一个长度为n的string数组，用于保存临时排序结果
