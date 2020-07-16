@@ -9,7 +9,8 @@ import (
 // AlgorithmEntry AlgorithmEntry
 func AlgorithmEntry(bprint bool) {
 	//testLsd()
-	testMsd()
+	// testMsd()
+	testQuick3()
 }
 
 func testMsd() {
@@ -22,6 +23,13 @@ func testMsd() {
 func testLsd() {
 	str.Lsd(sameLengthStringSlice, len(sameLengthStringSlice[0]))
 	for _, s := range sameLengthStringSlice {
+		fmt.Println(s)
+	}
+}
+
+func testQuick3() {
+	str.Quick3(miscLengthStringArray)
+	for _, s := range miscLengthStringArray {
 		fmt.Println(s)
 	}
 }

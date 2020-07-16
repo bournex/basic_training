@@ -15,7 +15,7 @@ import (
 func StructureEntry(bprint bool) {
 	// testBst()
 	// testSkipList()
-	testHeap()
+	// testHeap()
 }
 
 func testBst() {
