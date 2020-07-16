@@ -1,6 +1,6 @@
 package str
 
-// Least-Significant-Digit First，低位优先字符串排序
+// Least-Significant-Digit-First，低位优先字符串排序
 // 其基础是键索引计数法，对字符串的每固定index位置进行索引
 // 从后向前逐渐完成字符串数组的排序
 // ss - 输入字符串数组
