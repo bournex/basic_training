@@ -3,14 +3,20 @@ package algorithms
 import (
 	"fmt"
 
+	"github.com/bournex/basic_training/algorithms/sort"
 	"github.com/bournex/basic_training/algorithms/str"
 )
 
 // AlgorithmEntry AlgorithmEntry
 func AlgorithmEntry(bprint bool) {
+	// testSort(bprint)
 	//testLsd()
 	// testMsd()
 	testQuick3()
+}
+
+func testSort(p bool) {
+	sort.AlgSort(p)
 }
 
 func testMsd() {

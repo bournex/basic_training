@@ -58,6 +58,8 @@ func (sl *skipList) constructSkipList(maxlvl int) {
 }
 
 func (sl *skipList) randomLevel(maxlvl int) int {
+	// 以2^maxlvl以内的数字作为级别采样区间，按照[2^i, 2^(i+1)]划分区间，其中0<=i<maxlvl
+	// 则第k级节点占比约为：((2^(i+1))-(2^i)+1) / (2^maxlvl)，其中k=maxlvl-i
 	lvl := maxlvl
 	n := rand.Intn(1 << maxlvl)
 	for n > 0 {
@@ -71,11 +73,6 @@ func (sl *skipList) randomLevel(maxlvl int) int {
 }
 
 func (sl *skipList) randomNode(level int, key base.Comparable, value interface{}) *skipNode {
-	// 随机生成0-9的数字，其中：
-	// 0 	代表4级节点，包含4个指针
-	// 12	代表3级节点，包含3个指针
-	// 345	代表2级节点，包含2个指针
-	// 6789	代表1级节点，包含1个指针
 
 	p := new(skipNode)
 	p.level = level
