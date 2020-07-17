@@ -10,9 +10,9 @@ import (
 // AlgorithmEntry AlgorithmEntry
 func AlgorithmEntry(bprint bool) {
 	// testSort(bprint)
-	//testLsd()
+	// testLsd()
 	// testMsd()
-	testQuick3()
+	// testQuick3()
 }
 
 func testSort(p bool) {

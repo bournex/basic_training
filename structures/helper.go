@@ -9,13 +9,74 @@ import (
 	"github.com/bournex/basic_training/structures/bst"
 	"github.com/bournex/basic_training/structures/heap"
 	"github.com/bournex/basic_training/structures/skiplist"
+	"github.com/bournex/basic_training/structures/str/sst"
 )
+
+// 用于测试的数据类型定义
+type Student struct {
+	// 学号
+	no int
+}
+
+type Score struct {
+	math     int
+	physical int
+}
+
+func (s Student) Compare(m interface{}) int {
+	mp := m.(Student)
+	if s.no > mp.no {
+		return 1
+	} else if s.no < mp.no {
+		return -1
+	}
+	return 0
+}
+
+func (s Student) ToString() string {
+	return strconv.Itoa(s.no)
+}
 
 // StructureEntry StructureEntry
 func StructureEntry(bprint bool) {
 	// testBst()
 	// testSkipList()
 	// testHeap()
+	testSst()
+}
+
+func testSst() {
+	s := sst.MakeSst()
+	s.Insert("liuone", Score{math: 99})
+	s.Insert("liutwo", Score{math: 70})
+	s.Insert("liuthree", Score{math: 94})
+	/*
+		s.Insert("liufour", Score{math: 89})
+		s.Insert("liufive", Score{math: 90})
+		s.Insert("liusix", Score{math: 98})
+		s.Insert("liuseven", Score{math: 92})
+		s.Insert("liueight", Score{math: 93})
+		s.Insert("liunine", Score{math: 95})
+		s.Insert("liuten", Score{math: 100})
+	*/
+
+	name := "liutwo"
+
+	findAndPrint := func(name string) {
+		val := s.Find(name)
+		if val == nil {
+			fmt.Println(name, "'s math score not exist")
+		} else {
+			score := val.(Score)
+			fmt.Println(name, "'s math score is", score.math)
+		}
+	}
+
+	findAndPrint(name)
+	s.Delete(name)
+	findAndPrint(name)
+	s.Insert(name, Score{math: 89})
+	findAndPrint(name)
 }
 
 func testBst() {
@@ -75,27 +136,4 @@ func testHeap() {
 		}
 		fmt.Println(h.ToString())
 	}
-}
-
-type Student struct {
-	// 学号
-	no int
-}
-
-type Score struct {
-	math int
-}
-
-func (s Student) Compare(m interface{}) int {
-	mp := m.(Student)
-	if s.no > mp.no {
-		return 1
-	} else if s.no < mp.no {
-		return -1
-	}
-	return 0
-}
-
-func (s Student) ToString() string {
-	return strconv.Itoa(s.no)
 }
