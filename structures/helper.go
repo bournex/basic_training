@@ -10,6 +10,7 @@ import (
 	"github.com/bournex/basic_training/structures/heap"
 	"github.com/bournex/basic_training/structures/skiplist"
 	"github.com/bournex/basic_training/structures/str/sst"
+	"github.com/bournex/basic_training/structures/str/tst"
 )
 
 // 用于测试的数据类型定义
@@ -42,25 +43,44 @@ func StructureEntry(bprint bool) {
 	// testBst()
 	// testSkipList()
 	// testHeap()
-	testSst()
+	// testSst()
+	testTst()
+}
+
+func testTst() {
+	t := tst.MakeTst()
+	t.Insert("by", Score{math: 99})
+	t.Insert("bye", Score{math: 70})
+	t.Insert("byte", Score{math: 94})
+	t.Insert("be", Score{math: 94})
+
+	name := "bye"
+
+	findAndPrint := func(name string) {
+		val := t.Find(name)
+		if val == nil {
+			fmt.Printf("%s's math score not exist\n", name)
+		} else {
+			score := val.(Score)
+			fmt.Printf("%s's math score is %d\n", name, score.math)
+		}
+	}
+
+	findAndPrint(name)
+	t.Delete(name)
+	findAndPrint(name)
+	t.Insert(name, Score{math: 89})
+	findAndPrint(name)
 }
 
 func testSst() {
 	s := sst.MakeSst()
-	s.Insert("liuone", Score{math: 99})
-	s.Insert("liutwo", Score{math: 70})
-	s.Insert("liuthree", Score{math: 94})
-	/*
-		s.Insert("liufour", Score{math: 89})
-		s.Insert("liufive", Score{math: 90})
-		s.Insert("liusix", Score{math: 98})
-		s.Insert("liuseven", Score{math: 92})
-		s.Insert("liueight", Score{math: 93})
-		s.Insert("liunine", Score{math: 95})
-		s.Insert("liuten", Score{math: 100})
-	*/
+	s.Insert("by", Score{math: 99})
+	s.Insert("bye", Score{math: 70})
+	s.Insert("byte", Score{math: 94})
+	s.Insert("be", Score{math: 100})
 
-	name := "liutwo"
+	name := "bye"
 
 	findAndPrint := func(name string) {
 		val := s.Find(name)

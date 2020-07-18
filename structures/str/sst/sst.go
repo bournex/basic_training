@@ -1,11 +1,14 @@
 package sst
 
+// VSst - String Search Trie
+// 字符查找树
 type VSst interface {
 	Insert(string, interface{})
 	Find(string) interface{}
 	Delete(string)
 }
 
+// MakeSst - 创建sst
 func MakeSst() VSst {
 	return new(sst)
 }
