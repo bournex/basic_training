@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/bournex/basic_training/structures/graph"
@@ -86,17 +87,36 @@ func testGraph() {
 		s = append(s, r)
 	}
 
-	t := func(v1, v2 string, b bool) {
+	g.Init(s)
+
+	// DFS判定连通性
+	t1 := func(v1, v2 string, b bool) {
 		if b {
 			fmt.Println(v1, "and", v2, "is connected")
 		} else {
 			fmt.Println(v1, "and", v2, "is not connected")
 		}
 	}
+	t1("E", "H", g.Connected("E", "H"))
+	t1("E", "W", g.Connected("E", "W"))
 
-	g.Init(s)
-	t("E", "H", g.Connected("E", "H"))
-	t("E", "W", g.Connected("E", "W"))
+	// BFS查找最短路径
+	t2 := func(v1, v2 string, p []string) {
+		if p != nil {
+			path := ""
+			for _, v := range p {
+				path += v
+				path += " -> "
+			}
+			path = strings.TrimSuffix(path, " -> ")
+			fmt.Printf("shortest path from %s to %s is %s\n", v1, v2, path)
+		} else {
+			fmt.Printf("there is no path from %s to %s\n", v1, v2)
+		}
+	}
+
+	t2("E", "G", g.ShortestPath("E", "G"))
+	t2("H", "E", g.ShortestPath("H", "E"))
 }
 
 func testTst() {

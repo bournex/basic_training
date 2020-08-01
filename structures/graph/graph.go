@@ -84,10 +84,63 @@ func (g *graph) dfs(target, previous string, accessed map[string]bool, depth int
 }
 
 func (g *graph) ShortestPath(v1, v2 string) []string {
-	// BFS判断最短路径（之一）
-	return nil
+	return g.bfs(v1, v2)
 }
 
-func (g *graph) bfs(target string) []string {
+func (g *graph) bfs(start, end string) []string {
+	if start == end {
+		return []string{start}
+	}
+	if g.nt[start] == nil || g.nt[end] == nil {
+		return nil
+	}
+
+	c := make(chan string, len(g.nt))
+	m := make(map[string]bool)
+	edge := make(map[string]string)
+	c <- start
+	found := false
+
+	for len(c) != 0 && !found {
+		select {
+		case v := <-c:
+
+			for _, next := range g.nt[v] {
+				if _, exist := m[next.vertex]; exist {
+					continue
+				}
+
+				m[next.vertex] = true
+				edge[next.vertex] = v
+
+				if next.vertex == end {
+					// 找到目标，不用再入
+					found = true
+					break
+				}
+				c <- next.vertex
+			}
+
+		default:
+			close(c)
+		}
+	}
+
+	if found {
+		res := make([]string, 0)
+		for end != start {
+			res = append(res, end)
+			end = edge[end]
+		}
+		res = append(res, start)
+
+		l := len(res)
+		for i := 0; i < l/2; i++ {
+			tmp := res[i]
+			res[i] = res[l-i-1]
+			res[l-i-1] = tmp
+		}
+		return res
+	}
 	return nil
 }
