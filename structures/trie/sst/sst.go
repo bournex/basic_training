@@ -2,6 +2,10 @@ package sst
 
 // VSst - String Search Trie
 // 字符查找树
+// 总体思路：
+//		近似数的形式，每一个节点维护一个字母表的链接数组，因为任意字母的下一个字母也可能是任意一个字母
+//		所以，如果字母表有m个，总共有n个节点的话，会占用m*n的空间
+// 		除此之外，sst可以在常数时间内完成子串的查找
 type VSst interface {
 	Insert(string, interface{})
 	Find(string) interface{}

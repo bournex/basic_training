@@ -88,13 +88,17 @@ func (g *graph) ShortestPath(v1, v2 string) []string {
 }
 
 func (g *graph) bfs(start, end string) []string {
+	// 如果起终点相同，则返回起点
 	if start == end {
 		return []string{start}
 	}
+
+	// 如果起终点所在图不连通或有任意点不在当前图中，则返回不连通
 	if g.nt[start] == nil || g.nt[end] == nil {
 		return nil
 	}
 
+	// 用于bfs的FIFO
 	c := make(chan string, len(g.nt))
 	m := make(map[string]bool)
 	edge := make(map[string]string)

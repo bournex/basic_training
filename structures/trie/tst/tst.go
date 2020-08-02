@@ -1,6 +1,12 @@
 package tst
 
 // VTst - Ternary Search Tree
+// 思路
+// 		属于sst的变体，当数据量上升时、或字母表扩大时，sst空间占用过大
+//		tst是三向字符串查找树，基本思路与三向快排类似，将当前节点区分为等于、大于、小于当前字母的三叉树形式
+//		对于等于当前节点字母的，继续向下查找，如果大于或小于当前节点值，则向左右子树继续查找，此时待查单词的
+//		索引不递增
+//		tst树的深度比sst增加，查找比较次数增多，但空间使用骤降。
 type VTst interface {
 	Insert(string, interface{})
 	Find(string) interface{}

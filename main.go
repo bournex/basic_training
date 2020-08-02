@@ -4,6 +4,7 @@ import (
 	"flag"
 
 	"github.com/bournex/basic_training/algorithms"
+	"github.com/bournex/basic_training/interview"
 	"github.com/bournex/basic_training/structures"
 )
 
@@ -13,4 +14,5 @@ func main() {
 
 	algorithms.AlgorithmEntry(*print)
 	structures.StructureEntry(*print)
+	interview.InterviewEntry(*print)
 }

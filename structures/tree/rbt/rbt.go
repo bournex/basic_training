@@ -114,7 +114,7 @@ func (rbt *redBlackTree) insertImpl(p *rbtNode, key base.Comparable, value inter
 		p = rbt.rotateLeft(p)
 	}
 	if p.left.IsRed() && p.right.IsRed() {
-		// 两侧为空，违反原则1，需要上翻
+		// 两侧为红，违反原则1，需要上翻
 		p = rbt.flipColor(p)
 	}
 	return p
