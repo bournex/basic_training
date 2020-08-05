@@ -11,7 +11,9 @@ type Relation struct {
 // VGraph 图接口
 type VGraph interface {
 	Init([]*Relation)
+	// DFS遍历判定连通性
 	Connected(v1, v2 string) bool
+	// BFS寻找最短路径
 	ShortestPath(v1, v2 string) []string
 }
 
