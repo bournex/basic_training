@@ -10,6 +10,7 @@ import (
 	"github.com/bournex/basic_training/structures/graph"
 	"github.com/bournex/basic_training/structures/heap"
 	"github.com/bournex/basic_training/structures/skiplist"
+	"github.com/bournex/basic_training/structures/stack"
 	"github.com/bournex/basic_training/structures/tree/bst"
 	"github.com/bournex/basic_training/structures/trie/sst"
 	"github.com/bournex/basic_training/structures/trie/tst"
@@ -228,4 +229,47 @@ func testHeap() {
 		}
 		fmt.Println(h.ToString())
 	}
+}
+
+func testStack() {
+	stackWithoutLimit := stack.MakeStack(0)
+	for i := 0; i < 16; i++ {
+		err := stackWithoutLimit.Push(i)
+		if err != nil {
+			fmt.Println(err.Error())
+		} else {
+			fmt.Println(i)
+		}
+	}
+	fmt.Printf("stack info %+v\n", stackWithoutLimit)
+	for i := 0; i < 16; i++ {
+		v, err := stackWithoutLimit.Pop()
+		if err != nil {
+			fmt.Println(err.Error())
+		} else {
+			fmt.Println(v.(int))
+		}
+	}
+	fmt.Printf("stack info %+v\n", stackWithoutLimit)
+
+	stackWithLimit := stack.MakeStack(3)
+
+	for i := 0; i < 4; i++ {
+		err := stackWithLimit.Push(i)
+		if err != nil {
+			fmt.Println(err.Error())
+		} else {
+			fmt.Println(i)
+		}
+	}
+	fmt.Printf("stack info %+v\n", stackWithLimit)
+	for i := 0; i < 4; i++ {
+		v, err := stackWithLimit.Pop()
+		if err != nil {
+			fmt.Println(err.Error())
+		} else {
+			fmt.Println(v.(int))
+		}
+	}
+	fmt.Printf("stack info %+v\n", stackWithLimit)
 }

@@ -3,7 +3,7 @@ package stack
 import "errors"
 
 const (
-	chunk_size = 4
+	chunk_size = 64
 	chunk_mask = (chunk_size - 1)
 )
 
