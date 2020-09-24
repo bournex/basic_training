@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/bournex/basic_training/structures/cache"
 	"github.com/bournex/basic_training/structures/graph"
 	"github.com/bournex/basic_training/structures/heap"
 	"github.com/bournex/basic_training/structures/skiplist"
@@ -56,7 +57,8 @@ func StructureEntry(bprint bool) {
 	// testHeap()
 	// testSst()
 	// testTst()
-	testGraph()
+	// testGraph()
+	testLru()
 }
 
 func testGraph() {
@@ -272,4 +274,25 @@ func testStack() {
 		}
 	}
 	fmt.Printf("stack info %+v\n", stackWithLimit)
+}
+
+func testLru() {
+	c := cache.MakeLru(3)
+	c.Set("a", 1)
+	c.Set("b", 2)
+	c.Set("c", 3)
+	// 期望c -> 3、b -> 2、a - > 1
+	fmt.Println(c.ToString())
+	c.Set("b", 4)
+	// 期望c -> 3、b -> 4、a - > 1
+	fmt.Println(c.ToString())
+	c.Get("a")
+	// 期望a - > 1、c -> 3、b -> 4
+	fmt.Println(c.ToString())
+	c.Set("d", 4)
+	// 期望d -> 4、a - > 1、c -> 3
+	fmt.Println(c.ToString())
+	c.Del("a")
+	// 期望d -> 4、c -> 3
+	fmt.Println(c.ToString())
 }

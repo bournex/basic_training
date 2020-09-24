@@ -7,7 +7,7 @@ import (
 )
 
 func InterviewEntry(p bool) {
-	tencentInterview()
+	// tencentInterview()
 }
 
 func tencentInterview() {
