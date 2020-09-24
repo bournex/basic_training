@@ -2,7 +2,7 @@ package bst
 
 import (
 	"github.com/bournex/basic_training/structures/base"
-	"github.com/bournex/basic_training/structures/queue"
+	"github.com/bournex/basic_training/structures/base/queue"
 )
 
 // 二叉查找树实现

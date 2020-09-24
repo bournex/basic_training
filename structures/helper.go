@@ -7,21 +7,15 @@ import (
 	"strings"
 	"time"
 
+	"github.com/bournex/basic_training/structures/base/heap"
+	"github.com/bournex/basic_training/structures/base/stack"
 	"github.com/bournex/basic_training/structures/cache"
 	"github.com/bournex/basic_training/structures/graph"
-	"github.com/bournex/basic_training/structures/heap"
 	"github.com/bournex/basic_training/structures/skiplist"
-	"github.com/bournex/basic_training/structures/stack"
 	"github.com/bournex/basic_training/structures/tree/bst"
 	"github.com/bournex/basic_training/structures/trie/sst"
 	"github.com/bournex/basic_training/structures/trie/tst"
-	/*
-		"github.com/bournex/basic_training/structures/bst"
-		"github.com/bournex/basic_training/structures/heap"
-		"github.com/bournex/basic_training/structures/skiplist"
-		"github.com/bournex/basic_training/structures/str/sst"
-		"github.com/bournex/basic_training/structures/str/tst"
-	*/)
+)
 
 // student 用于测试的数据类型定义
 type student struct {
@@ -58,6 +52,7 @@ func StructureEntry(bprint bool) {
 	// testSst()
 	// testTst()
 	// testGraph()
+	// testStack()
 	testLru()
 }
 
