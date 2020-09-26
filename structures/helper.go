@@ -53,7 +53,8 @@ func StructureEntry(bprint bool) {
 	// testTst()
 	// testGraph()
 	// testStack()
-	testLru()
+	testFifo()
+	// testLru()
 }
 
 func testGraph() {
@@ -269,6 +270,24 @@ func testStack() {
 		}
 	}
 	fmt.Printf("stack info %+v\n", stackWithLimit)
+}
+
+func testFifo() {
+	f := cache.MakeFifo(3)
+	f.Set("a", 1)
+	f.Set("b", 2)
+	f.Set("c", 3)
+	// 期望c -> 3、b -> 2、a -> 1
+	fmt.Println(f.ToString())
+	f.Set("b", 4)
+	// 期望c -> 3、b -> 4、a -> 1
+	fmt.Println(f.ToString())
+	f.Set("d", 4)
+	// 期望d -> 4、c -> 3、b -> 4
+	fmt.Println(f.ToString())
+	f.Set("e", 5)
+	// 期望e -> 5、d -> 4、c -> 3
+	fmt.Println(f.ToString())
 }
 
 func testLru() {

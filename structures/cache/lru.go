@@ -27,6 +27,9 @@ type lruNode struct {
 	value interface{} // node 值
 }
 
+// 设计思路
+// 使用常见的hash + 双链表实现
+// 读写O(1)复杂度
 type lru struct {
 	max  int64 // 最大容量
 	size int64 // 当前使用量
@@ -47,14 +50,17 @@ func (l *lru) Init(max int64) {
 func (l *lru) Get(key interface{}) interface{} {
 	if v, ok := l.access[key]; ok {
 		if v.prev != nil {
-			// 从当前位置脱链
+			// 不是头结点
 			if v.next != nil {
+				// 不是尾节点，脱链
 				v.next.prev = v.prev
 				v.prev.next = v.next
 			} else {
+				// 是尾结点，修改tail指向并脱链
 				l.tail = v.prev
 				v.prev.next = nil
 			}
+			// 加入到链表头
 			l.head.prev = v
 			v.next = l.head
 			l.head = v
@@ -71,14 +77,16 @@ func (l *lru) Get(key interface{}) interface{} {
 func (l *lru) Set(key, value interface{}) {
 
 	if v, ok := l.access[key]; ok {
-		// 更新值
+		// 已存在，更新值
 		v.value = value
 	} else {
 		// 写入值
 		if l.size == l.max && l.tail != nil {
-			// 已满，尾部脱链
+			// 缓存已满，先脱链tail上的元素，
+			// 由于马上要插入一个元素，所以不对size调整
 			node := l.tail
 			if node.prev != nil {
+				// 不是头结点，说明缓存中不止一个元素
 				node.prev.next = nil
 				node.prev = nil
 			} else {
@@ -89,7 +97,7 @@ func (l *lru) Set(key, value interface{}) {
 			// 从快速访问hash移除
 			delete(l.access, node.key)
 		} else {
-			// 增加计数
+			// 缓存未满或为空，直接写入
 			l.size++
 		}
 

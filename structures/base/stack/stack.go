@@ -3,7 +3,7 @@ package stack
 import "errors"
 
 const (
-	chunk_size = 64
+	chunk_size = 64 // 栈每次扩容的大小
 	chunk_mask = (chunk_size - 1)
 )
 
@@ -13,6 +13,8 @@ var (
 )
 
 // 不定长栈实现
+// 实现思路，考虑可变长的情况，使用局部线性的chunk作为数据存储块
+// chunk之间通过指针链接，在堆上分配chunk空间
 type Stack interface {
 	Push(interface{}) error
 	Pop() (interface{}, error)
@@ -43,13 +45,15 @@ type stack struct {
 	chunks int    // chunk数量
 }
 
+// O(1) 压栈
 func (s *stack) Push(val interface{}) error {
 	if s.limit != 0 && s.len == s.limit {
 		return STACK_FULL
 	}
 
 	if s.len&chunk_mask == 0 || s.tail == nil {
-		// 需要扩容
+		// len已经是chunk_size的整数倍，说明当前栈的chunk已满，需要扩容
+		// tail为空说明栈为空，需要创建第一个chunk
 		c := new(chunk)
 		c.prev = s.tail
 		c.next = nil
@@ -66,6 +70,7 @@ func (s *stack) Push(val interface{}) error {
 	return nil
 }
 
+// O(1) 弹栈
 func (s *stack) Pop() (val interface{}, err error) {
 	if s.tail == nil {
 		return nil, STACK_EMPTY
