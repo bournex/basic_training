@@ -6,7 +6,7 @@ import (
 )
 
 func WorkingEntry(print bool) {
-	testMaxTimeDuration()
+	// testMaxTimeDuration()
 }
 
 func testMaxTimeDuration() {

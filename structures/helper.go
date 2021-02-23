@@ -11,6 +11,7 @@ import (
 	"github.com/bournex/basic_training/structures/base/stack"
 	"github.com/bournex/basic_training/structures/cache"
 	"github.com/bournex/basic_training/structures/graph"
+	"github.com/bournex/basic_training/structures/list"
 	"github.com/bournex/basic_training/structures/skiplist"
 	"github.com/bournex/basic_training/structures/tree/bst"
 	"github.com/bournex/basic_training/structures/trie/sst"
@@ -47,8 +48,9 @@ func (s student) ToString() string {
 // StructureEntry StructureEntry
 func StructureEntry(bprint bool) {
 	// testBst()
+	testList()
 	// testSkipList()
-	testHeap()
+	// testHeap()
 	// testSst()
 	// testTst()
 	// testGraph()
@@ -185,6 +187,21 @@ func testBst() {
 		score := v.(score)
 		fmt.Println(s.no, " score is ", score.math)
 	}
+}
+
+func testList() {
+	l := list.MakeLinkedList()
+	n1 := &list.ListNode{Next: nil, Value: 1}
+	n2 := &list.ListNode{Next: nil, Value: 2}
+	n3 := &list.ListNode{Next: nil, Value: 3}
+	l.Append(n1)
+	l.Append(n2)
+	l.Append(n3)
+
+	l.Print()
+
+	l.Reverse1()
+	l.Print()
 }
 
 func testSkipList() {
