@@ -2,8 +2,8 @@ package ttt
 
 import "github.com/bournex/basic_training/structures/base"
 
-// two-three tree 2-3树实现
-
+// 2-3树实现
+// two-three tree
 type VTtt interface {
 	// 成功返回nil
 	// 失败返回error信息

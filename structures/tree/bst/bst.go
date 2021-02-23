@@ -6,7 +6,7 @@ import (
 )
 
 // 二叉查找树实现
-
+// binary search tree
 // ------------------------PUBLIC--------------
 
 type VBst interface {

@@ -3,6 +3,7 @@ package rbt
 import "github.com/bournex/basic_training/structures/base"
 
 // 红黑树实现
+// red black tree
 
 // Public----------------
 type VRbt interface {

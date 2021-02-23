@@ -9,6 +9,7 @@ import (
 // 通过对n执行2n、2n+1的算数操作，可以很容易找到其子节点的位置。
 // 大顶堆的特点是，父节点的值要大于子节点的值。而小顶堆正好相反。
 // 由于其使用紧凑的线性空间表达，所以堆天然就是一棵完全二叉树。
+// 这里实现的是大顶堆
 
 type VHeap interface {
 	Insert(base.Comparable) error
@@ -79,7 +80,7 @@ func (h *heap) down(n int) {
 // Insert 将新增数据添加到数组的最后，然后对新增数据执行上浮
 // 令其上浮到合理位置
 func (h *heap) Insert(v base.Comparable) error {
-	if h.len < h.maxsize {
+	if h.len+1 < h.maxsize {
 		h.buf[h.len+1] = v
 		h.up(h.len + 1)
 		h.len++
@@ -98,7 +99,7 @@ func (h *heap) ExtraMax() (base.Comparable, error) {
 		h.len = 0
 		return v, nil
 	} else if h.len > 1 {
-		// 用位节点填充父节点位置，并使其下沉到合适位置
+		// 用尾节点填充父节点位置，并使其下沉到合适位置
 		v := h.buf[1]
 		h.buf[1] = h.buf[h.len]
 		h.down(1)
@@ -111,9 +112,15 @@ func (h *heap) ExtraMax() (base.Comparable, error) {
 
 func (h *heap) ToString() string {
 	var s string
+	var j int
 	for i := 1; i < h.len+1; i++ {
-		s += "->"
+		s += "["
 		s += h.buf[i].ToString()
+		s += "]"
+		if i-(1<<j)+1 == 1<<j {
+			s += " "
+			j++
+		}
 	}
 	return s
 }

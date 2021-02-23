@@ -48,12 +48,12 @@ func (s student) ToString() string {
 func StructureEntry(bprint bool) {
 	// testBst()
 	// testSkipList()
-	// testHeap()
+	testHeap()
 	// testSst()
 	// testTst()
 	// testGraph()
 	// testStack()
-	testFifo()
+	// testFifo()
 	// testLru()
 }
 
@@ -208,12 +208,17 @@ func testSkipList() {
 }
 
 func testHeap() {
-	h := heap.MakeHeap(10)
+	h := heap.MakeHeap(4)
 	h.Insert(student{no: 4})
 	h.Insert(student{no: 1})
 	h.Insert(student{no: 5})
 	h.Insert(student{no: 2})
 	h.Insert(student{no: 3})
+	h.Insert(student{no: 11})
+	h.Insert(student{no: 25})
+	h.Insert(student{no: 13})
+	h.Insert(student{no: 9})
+	h.Insert(student{no: 8})
 
 	fmt.Println(h.ToString())
 
