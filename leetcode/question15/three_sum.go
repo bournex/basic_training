@@ -32,7 +32,6 @@ func threeSum(nums []int) [][]int {
 				res = append(res, []int{nums[i], nums[j], nums[k]})
 				j++
 			}
-
 		}
 	}
 
