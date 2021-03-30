@@ -1,4 +1,4 @@
-package str
+package msd
 
 // Most-Significant-Digit-First 高位优先字符串排序
 // 线性时间内完成字符串数组排序
