@@ -1,4 +1,4 @@
-package str
+package lsd
 
 // Least-Significant-Digit-First，低位优先字符串排序
 // 其基础是键索引计数法，对字符串的每固定index位置进行索引
