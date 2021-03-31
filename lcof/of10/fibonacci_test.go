@@ -35,7 +35,6 @@ func TestFib(t *testing.T) {
 			t.Errorf("input %d, expect %d, got %d", v.Input, v.Expect, res)
 		}
 	}
-
 }
 
 func BenchmarkFib(b *testing.B) {
@@ -56,5 +55,24 @@ func BenchmarkFib(b *testing.B) {
 		b.Run("benchmark", func(b *testing.B) {
 			fib(v.Input)
 		})
+	}
+}
+
+func TestFrogJump(t *testing.T) {
+	examples := []struct {
+		Input  int
+		Expect int
+	}{
+		{
+			6,
+			13,
+		},
+	}
+
+	for _, v := range examples {
+		res := frog_jump(v.Input)
+		if res != v.Expect {
+			t.Errorf("input %d, expect %d, got %d", v.Input, v.Expect, res)
+		}
 	}
 }
