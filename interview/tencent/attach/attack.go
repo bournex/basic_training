@@ -1,4 +1,4 @@
-package tencent
+package attach
 
 // 基础：判断8x8棋盘中，是否有相互攻击的车
 // 进阶：判断8x8棋盘中，是否有相互攻击的车或皇后
@@ -18,7 +18,7 @@ package tencent
 // 根据以上思考，判断是否有车互相攻击代码如下
 
 // Attack 车攻击判断
-func AttackCart(matrix [][]int) bool {
+func attackCart(matrix [][]int) bool {
 	h := cap(matrix)
 	w := cap(matrix[0])
 
@@ -48,7 +48,28 @@ func AttackCart(matrix [][]int) bool {
 	return false
 }
 
-func AttackQueen(matrix [][]int) bool {
+// 使用水平和垂直数组作为状态记录
+// 空间换时间，使复杂度从N²下降到N
+func attackCart1(matrix [][]int) bool {
+	h := cap(matrix)
+	w := cap(matrix[0])
+
+	vertical := make([]int, w)
+	horizontal := make([]int, h)
+
+	for i := 0; i < h; i++ {
+		for j := 0; j < w; j++ {
+			if matrix[i][j] == 1 && (horizontal[i] == 1 || vertical[j] == 1) {
+				return true
+			}
+			horizontal[i], vertical[j] = matrix[i][j], matrix[i][j]
+		}
+	}
+
+	return false
+}
+
+func attackQueen(matrix [][]int) bool {
 	h := cap(matrix)
 	w := cap(matrix[0])
 
@@ -88,6 +109,30 @@ func AttackQueen(matrix [][]int) bool {
 						m++
 						n--
 					}
+				}
+			}
+		}
+	}
+	return false
+}
+
+func attackQueen1(matrix [][]int) bool {
+	h := cap(matrix)
+	w := cap(matrix[0])
+
+	vertical := make([]int, w)      // 垂直
+	horizontal := make([]int, h)    // 水平
+	slash := make([]int, w+h-1)     // 左上到右下
+	backslash := make([]int, w+h-1) // 右上到左下
+
+	for i := 0; i < h; i++ {
+		for j := 0; j < w; j++ {
+			if matrix[i][j] == 1 {
+				if horizontal[j] == 1 || vertical[i] == 1 || slash[i+j] == 1 || backslash[h+i-j-1] == 1 {
+					return true
+				} else {
+					horizontal[j], vertical[i] = matrix[i][j], matrix[i][j]
+					slash[i+j], backslash[h+i-j-1] = matrix[i][j], matrix[i][j]
 				}
 			}
 		}
