@@ -12,6 +12,11 @@ func TestRemoveNthFromEnd(t *testing.T) {
 		Expect *ListNode
 	}{
 		{
+			initList([]int{1, 2}),
+			2,
+			initList([]int{2}),
+		},
+		{
 			initList([]int{1}),
 			1,
 			nil,
