@@ -10,10 +10,13 @@ func permutation1(idx int, s []byte) []string {
 	}
 
 	res := make([]string, 0)
+	set := make(map[byte]bool)
 	for i := idx; i < len(s); i++ {
-		if i > idx && s[i] == s[idx] {
+		if _, ok := set[s[i]]; ok {
 			continue
 		}
+
+		set[s[i]] = true
 		tmp := s[i]
 		[]byte(s)[i] = s[idx]
 		[]byte(s)[idx] = tmp

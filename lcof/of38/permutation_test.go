@@ -8,8 +8,8 @@ func TestPermutation(t *testing.T) {
 		Expect []string
 	}{
 		{
-			"aaaab",
-			[]string{"aaaab", "aaaba", "aabaa", "abaaa", "baaaa"},
+			"aabx",
+			[]string{"aabx", "abax", "baax", "abxa", "baxa", "bxaa", "aaxb", "axab", "xaab", "axba", "xaba", "xbaa"},
 		},
 		{
 			"aaaaaa",
