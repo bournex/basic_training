@@ -1,4 +1,4 @@
-package question20
+package q20
 
 // 栈应用
 

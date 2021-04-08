@@ -1,4 +1,4 @@
-package question3
+package q3
 
 func lengthOfLongestSubstring(s string) int {
 	sign := make([]int, 256)

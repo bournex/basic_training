@@ -1,4 +1,4 @@
-package question15
+package q15
 
 import "sort"
 

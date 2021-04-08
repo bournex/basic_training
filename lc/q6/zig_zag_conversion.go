@@ -1,4 +1,4 @@
-package question6
+package q6
 
 func convert(s string, numRows int) string {
 	if numRows == 1 {

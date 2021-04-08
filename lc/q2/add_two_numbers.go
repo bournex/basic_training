@@ -1,4 +1,4 @@
-package question2
+package q2
 
 /**
  * Definition for singly-linked list.

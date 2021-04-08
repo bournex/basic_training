@@ -1,4 +1,4 @@
-package question19
+package q19
 
 import (
 	"fmt"
