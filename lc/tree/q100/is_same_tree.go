@@ -1,5 +1,7 @@
 package q100
 
+import "github.com/bournex/basic_training/lc/tree"
+
 /**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -8,13 +10,8 @@ package q100
  *     Right *TreeNode
  * }
  */
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
 
-func isSameTree(p *TreeNode, q *TreeNode) bool {
+func isSameTree(p *tree.TreeNode, q *tree.TreeNode) bool {
 	if p == nil || q == nil {
 		if (p == nil && q != nil) || (p != nil && q == nil) {
 			return false
