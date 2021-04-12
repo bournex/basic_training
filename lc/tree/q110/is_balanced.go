@@ -11,5 +11,5 @@ import "github.com/bournex/basic_training/lc/tree"
  * }
  */
 func isBalanced(root *tree.TreeNode) bool {
-
+	return false
 }
