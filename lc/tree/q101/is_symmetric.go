@@ -11,6 +11,7 @@ import "github.com/bournex/basic_training/lc/tree"
  * }
  */
 
+// 官方还提到一个BFS解法，但是需要O(n)的空间复杂度
 func isSymmetric(root *tree.TreeNode) bool {
 	if root == nil {
 		return true
@@ -32,6 +33,9 @@ func isSubSymmetric(left, right *tree.TreeNode) bool {
 }
 
 // 下面是之前实现的缺陷方案
+//	思路是中序遍历到数组，查看数组是否对称
+//	缺陷在于数组长度未知的情况下，需要处理非完全二叉树的情形
+//	并且空间复杂度为O(n)
 
 /*
 func isSymmetric(root *tree.TreeNode) bool {

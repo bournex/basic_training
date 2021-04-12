@@ -45,3 +45,18 @@ func Build(array []int) *TreeNode {
 
 	return nodes[1]
 }
+
+func IsSameTree(p *TreeNode, q *TreeNode) bool {
+	if p == nil || q == nil {
+		if (p == nil && q != nil) || (p != nil && q == nil) {
+			return false
+		}
+		return true
+	}
+
+	if p.Val != q.Val {
+		return false
+	}
+
+	return IsSameTree(p.Left, q.Left) && IsSameTree(p.Right, q.Right)
+}
