@@ -1,4 +1,4 @@
-package q110
+package q111
 
 import (
 	"fmt"
@@ -7,36 +7,36 @@ import (
 	"github.com/bournex/basic_training/lc/tree"
 )
 
-func TestIsBalanced(t *testing.T) {
+func TestMinDepth(t *testing.T) {
 	examples := []struct {
 		Input  *tree.TreeNode
-		Expect bool
+		Expect int
 	}{
 		{
-			nil,
-			true,
+			tree.Build([]int{1, 2, 3, tree.NIL, tree.NIL, 4, 5}),
+			2,
 		},
 		{
+
 			tree.Build([]int{1}),
-			true,
+			1,
 		},
 
 		{
-			tree.Build([]int{1, 2, tree.INT_MIN, 3}),
-			false,
+			tree.Build([]int{1, 2, tree.NIL, 3, 4}),
+			3,
 		},
-
 		{
-			tree.Build([]int{1, 2, 3}),
-			true,
+			nil,
+			0,
 		},
 	}
 
 	for i, v := range examples {
 		t.Run(fmt.Sprintf("case%d", i), func(t *testing.T) {
-			res := isBalanced(v.Input)
+			res := minDepth(v.Input)
 			if res != v.Expect {
-				t.Errorf("expect %t, got %t", v.Expect, res)
+				t.Errorf("expect %d, got %d", v.Expect, res)
 			}
 		})
 	}

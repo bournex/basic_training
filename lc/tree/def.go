@@ -9,6 +9,7 @@ type TreeNode struct {
 const (
 	INT_MAX = int(^uint(0) >> 1)
 	INT_MIN = ^INT_MAX
+	NIL     = INT_MIN
 )
 
 func BuildTree1(array ...[]int) *TreeNode {
