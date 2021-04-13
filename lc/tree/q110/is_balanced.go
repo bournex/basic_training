@@ -17,7 +17,8 @@ import (
 
 // 思路
 //	递归遍历，参数为下级节点和下级节点深度，返回当前节点下最深子节点，以及当前节点下是否平衡
-//
+// 总结
+//  自底向上、自顶向下递归？
 func isBalanced(root *tree.TreeNode) bool {
 	_, balance := is_balanced(root, 0)
 	return balance
