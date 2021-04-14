@@ -11,12 +11,16 @@ func TestGetRow(t *testing.T) {
 		Expect []int
 	}{
 		{
-			1,
+			0,
 			[]int{1},
 		},
 		{
-			2,
+			1,
 			[]int{1, 1},
+		},
+		{
+			2,
+			[]int{1, 2, 1},
 		},
 		{
 			3,
