@@ -14,10 +14,14 @@ type ListNode struct {
 }
 
 func swapPairs(head *ListNode) *ListNode {
-	// 处理空链表和只有一个元素的链表
 	if head == nil || head.Next == nil {
 		return head
 	}
 
-	return nil
+	p := head.Next.Next
+	head.Next.Next = head
+	q := head.Next
+	head.Next = swapPairs(p)
+
+	return q
 }
