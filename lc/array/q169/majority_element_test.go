@@ -22,9 +22,8 @@ func TestMajorityElement(t *testing.T) {
 			[]int{3, 2, 3},
 			3,
 		},
-
 		{
-			[]int{2, 1, 1, 1, 1, 2, 2},
+			[]int{3, 3, 1, 1, 1, 1, 1, 2, 2},
 			1,
 		},
 	}
