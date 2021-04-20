@@ -1,8 +1,8 @@
 package m43
 
 // 思考
-//	基本乘法运算，细节较多，需要细心
-//
+//	基本乘法运算，细节较多，需要细心，主要是处理好进位、ascii与整数的互转
+
 func multiply(num1 string, num2 string) string {
 	if num1 == "0" || num2 == "0" {
 		return "0"
