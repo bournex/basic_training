@@ -29,18 +29,20 @@ func TestRemoveNthFromEnd(t *testing.T) {
 	}
 
 	for _, v := range examples {
-		p1 := copyList(v.Input)
-		p2 := removeNthFromEnd(v.Input, v.N)
+		input := copyList(v.Input)
+		res := removeNthFromEnd(input, v.N)
 
-		p3 := p1
-		p4 := p2
+		p1 := res
+		p2 := v.Expect
 		for p1 != nil && p2 != nil && p1.Val == p2.Val {
+			if p1.Val != p2.Val {
+				t.Errorf("input %s, expect %s, got %s", formatList(v.Input), formatList(v.Expect), formatList(res))
+			}
 			p1 = p1.Next
 			p2 = p2.Next
 		}
-		t.Errorf("input %s, expect %s, got %s", formatList(p3), formatList(v.Expect), formatList(p4))
-
-		if p2 != p1 {
+		if !(p1 == nil && p2 == nil) {
+			t.Errorf("input %s, expect %s, got %s", formatList(v.Input), formatList(v.Expect), formatList(res))
 		}
 	}
 }
