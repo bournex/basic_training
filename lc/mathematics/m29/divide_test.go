@@ -7,7 +7,7 @@ import (
 	"github.com/bournex/basic_training/lc/tree"
 )
 
-func Test(t *testing.T) {
+func TestDivide(t *testing.T) {
 	testCases := []struct {
 		InputDevidend int
 		InputDevisor  int
