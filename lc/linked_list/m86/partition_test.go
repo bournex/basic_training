@@ -14,9 +14,34 @@ func TestPartition(t *testing.T) {
 		Expect *ll.ListNode
 	}{
 		{
+			ll.Build([]int{1, 2, 4, 3, 2, 5}),
+			3,
+			ll.Build([]int{1, 2, 2, 4, 3, 5}),
+		},
+		{
+			ll.Build([]int{5, 4, 3, 2, 1}),
+			5,
+			ll.Build([]int{4, 3, 2, 1, 5}),
+		},
+		{
+			ll.Build([]int{5, 4, 3, 2, 1}),
+			1,
+			ll.Build([]int{5, 4, 3, 2, 1}),
+		},
+		{
+			ll.Build([]int{5, 4, 3, 2, 1}),
+			4,
+			ll.Build([]int{3, 2, 1, 5, 4}),
+		},
+		{
 			ll.Build([]int{2, 1}),
 			2,
 			ll.Build([]int{1, 2}),
+		},
+		{
+			ll.Build([]int{2, 1}),
+			1,
+			ll.Build([]int{2, 1}),
 		},
 	}
 	for i, v := range testCases {
@@ -29,6 +54,7 @@ func TestPartition(t *testing.T) {
 
 				if p1.Val != p2.Val {
 					t.Errorf("input %s, k %d, expect %s, got %s", ll.Format(v.Input), v.X, ll.Format(v.Expect), ll.Format(res))
+					return
 				}
 
 				p1 = p1.Next
