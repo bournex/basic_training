@@ -12,6 +12,9 @@ import (
  * }
  */
 
+// 思考
+//	双指针的变形题，首先O(n)获取到长度
+
 func rotateRight(head *ll.ListNode, k int) *ll.ListNode {
 	p := head
 	n := 0
