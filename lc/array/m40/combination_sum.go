@@ -3,47 +3,27 @@ package m40
 import "sort"
 
 func combinationSum2(candidates []int, target int) [][]int {
-	sort.Ints(candidates)
-
-	n := len(candidates)
-	// perm := 0               // 累加值
-	array := make([]int, n) // 保存中间结果
-	flag := make([]bool, n)
-
 	result := make([][]int, 0)
-	var proc func(int, int, int)
-	proc = func(pos int, perm int, index int) {
-		// pos是candidates的索引
-		if perm == target {
-			tmp := make([]int, index)
-			copy(tmp, array[:index])
-			result = append(result, tmp)
-			return
-		} else if perm > target {
-			return
-		}
+	path := make([]int, 0)
 
-		for i := pos; i < n; i++ {
-			if flag[i] || i > 0 && candidates[i] == candidates[i-1] && !flag[i] {
-				continue
-			}
+	sort.Ints(candidates)
+	combination_sum(candidates, 0, target, path, &result)
+	return result
+}
 
-			t := candidates[i]
-			candidates[i] = candidates[pos]
-			candidates[pos] = t
-
-			flag[i] = true
-			array[index] = t
-			proc(pos+1, perm+t, index+1)
-			flag[i] = false
-
-			// 还原candidates
-			t = candidates[i]
-			candidates[i] = candidates[pos]
-			candidates[pos] = t
+func combination_sum(candidates []int, current int, target int, path []int, result *[][]int) {
+	for i, v := range candidates {
+		if current+v > target {
+			continue
+		} else if current+v < target {
+			path = append(path, v)
+			combination_sum(candidates[i:], current+v, target, path, result)
+			path = path[0 : len(path)-1]
+		} else {
+			s := make([]int, len(path)+1)
+			copy(s, path)
+			s[len(s)-1] = v
+			*result = append(*result, s)
 		}
 	}
-	proc(0, 0, 0)
-
-	return result
 }
