@@ -11,7 +11,7 @@ package m12
 
 // 贪婪查表
 //	难点在于，是否能想到，同一个阿拉伯数字有多种罗马数字表达
-//	这是采用贪婪算法的关键
+//	这是能否采用贪婪算法的关键
 func intToRoman(num int) string {
 	var result string
 	for num > 0 {
