@@ -5,11 +5,7 @@ package m50
 //	另外浮点数不能移位，需要渐进移位
 func myPow(x float64, n int) float64 {
 
-	var (
-		isFraction = n < 0
-		// isNegative = (x < 0 && n%2 == 1)
-	)
-
+	isFraction := n < 0
 	if isFraction {
 		n = -n
 	}
@@ -29,9 +25,6 @@ func myPow(x float64, n int) float64 {
 		}
 	}
 
-	// if isNegative {
-	// 	sum *= -1
-	// }
 	if isFraction {
 		sum = 1 / sum
 	}
