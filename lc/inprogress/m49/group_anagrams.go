@@ -1,5 +1,7 @@
 package m49
 
+// 思考
+//	一般的hash应用
 func groupAnagrams(strs []string) [][]string {
 	table := make(map[[26]int][]string)
 
