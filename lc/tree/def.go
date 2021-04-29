@@ -47,6 +47,19 @@ func Build(array []int) *TreeNode {
 	return nodes[1]
 }
 
+func CopyTree(root *TreeNode) *TreeNode {
+	var copyTree func(*TreeNode) *TreeNode
+	copyTree = func(p *TreeNode) *TreeNode {
+		if p == nil {
+			return p
+		}
+		node := &TreeNode{Val: p.Val, Left: copyTree(p.Left), Right: copyTree(p.Right)}
+		return node
+	}
+
+	return copyTree(root)
+}
+
 func IsSameTree(p *TreeNode, q *TreeNode) bool {
 	if p == nil || q == nil {
 		if (p == nil && q != nil) || (p != nil && q == nil) {
