@@ -8,6 +8,10 @@ package m63
 //	3、没有考虑m-1行、n-1列有障碍物的情形
 //	4、同3，最右列和最底行存在障碍物时，小于障碍物索引的列或行都不可达的情形
 //	需要加强对应用提醒中的特殊用例的考量
+// 下面这个实现的思路，是反向的递推
+// 对比官方答案，官方定义dp[i][j]是到达点(i,j)的步数
+// 而我的计算方式是dp[i][j]表达的是点(i,j)到达(m,n)终点的步数
+// 思考两种思路的差异
 func uniquePathsWithObstacles(obstacleGrid [][]int) int {
 	m := len(obstacleGrid) // 行数
 	if m == 0 {
@@ -57,6 +61,8 @@ func uniquePathsWithObstacles(obstacleGrid [][]int) int {
 	return arr[0][0]
 }
 
+// 按照官方思路实现
+// dp + 滚动数组
 func uniquePathsWithObstaclesSingleLine(obstacleGrid [][]int) int {
 	m := len(obstacleGrid) // 行数
 	if m == 0 {
@@ -69,27 +75,23 @@ func uniquePathsWithObstaclesSingleLine(obstacleGrid [][]int) int {
 
 	status := make([]int, n)
 	// 初始化最后一行到status
-	for i := n - 2; i >= 0; i-- {
-		if obstacleGrid[m-1][i] == 0 {
-			status[i] = 1
-		} else {
-			break
+	for i := 0; i < n && obstacleGrid[0][i] == 0; i++ {
+		status[i] = 1
+	}
+
+	for i := 1; i < m; i++ {
+		if obstacleGrid[i][0] == 1 || status[0] == 0 {
+			status[0] = 0
+		}
+
+		for j := 1; j < n; j++ {
+			if obstacleGrid[i][j] == 0 {
+				status[j] = status[j] + status[j-1]
+			} else {
+				status[j] = 0
+			}
 		}
 	}
 
-	if obstacleGrid[m-2][n-1] != 1 {
-		status[n-1] = 1
-	}
-
-	for i := m - 2; i >= 0; i-- {
-		if obstacleGrid[i][n-1] == 1 {
-			status[n-1] = 0
-		}
-
-		for j := n - 2; j >= 0; j-- {
-			status[j] = status[j] + status[j+1]
-		}
-	}
-
-	return status[0]
+	return status[n-1]
 }
