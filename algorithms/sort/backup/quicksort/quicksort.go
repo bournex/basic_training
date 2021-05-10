@@ -40,7 +40,7 @@ func (qs *QuickSorter) SortIndex(arr []int, lo, hi int) {
 		}
 		for arr[hi] > mid {
 			// 首先递减索引，如果索引减少到了最小值，即begin处，begin是选取的基准值，所以i一�?>=j
-			// 退出外循环后，其实begin和j是相等的�?
+			// 退出外循环后，其实begin和j是相等的
 			hi--
 			if hi == begin {
 				// begin是mid值所在位置的索引，是不参与交换的，j移动到begin，说明当前轮已经结束
