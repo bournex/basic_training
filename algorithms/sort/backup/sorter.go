@@ -1,16 +1,16 @@
-package sort
+package backup
 
 import (
 	"fmt"
 	"math/rand"
 	"time"
 
-	"github.com/bournex/basic_training/algorithms/sort/heapsort"
-	"github.com/bournex/basic_training/algorithms/sort/insertsort"
-	"github.com/bournex/basic_training/algorithms/sort/mergesort"
-	"github.com/bournex/basic_training/algorithms/sort/quicksort"
-	"github.com/bournex/basic_training/algorithms/sort/selectsort"
-	"github.com/bournex/basic_training/algorithms/sort/shellsort"
+	"github.com/bournex/basic_training/algorithms/sort/backup/heapsort"
+	"github.com/bournex/basic_training/algorithms/sort/backup/insertsort"
+	"github.com/bournex/basic_training/algorithms/sort/backup/mergesort"
+	"github.com/bournex/basic_training/algorithms/sort/backup/quicksort"
+	"github.com/bournex/basic_training/algorithms/sort/backup/selectsort"
+	"github.com/bournex/basic_training/algorithms/sort/backup/shellsort"
 )
 
 // helper functions

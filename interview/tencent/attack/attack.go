@@ -17,7 +17,7 @@ package attach
 // 基础
 // 根据以上思考，判断是否有车互相攻击代码如下
 
-// Attack 车攻击判断
+// Attack 车攻击判断，暴力解法
 func attackCart(matrix [][]int) bool {
 	h := cap(matrix)
 	w := cap(matrix[0])
@@ -49,7 +49,7 @@ func attackCart(matrix [][]int) bool {
 }
 
 // 使用水平和垂直数组作为状态记录
-// 空间换时间，使复杂度从N²下降到N
+// 空间换时间，对比attackCart方法，时间复杂度从
 func attackCart1(matrix [][]int) bool {
 	h := cap(matrix)
 	w := cap(matrix[0])
