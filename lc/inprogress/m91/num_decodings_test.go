@@ -11,8 +11,16 @@ func TestNumDecodings(t *testing.T) {
 		Expect int
 	}{
 		{
+			"00",
+			0,
+		},
+		{
+			"01",
+			0,
+		},
+		{
 			"2101",
-			1,
+			1, // BJA
 		},
 		{
 			"1000",
@@ -24,7 +32,7 @@ func TestNumDecodings(t *testing.T) {
 		},
 		{
 			"12",
-			2,
+			2, // AB，L
 		},
 		{
 			"11111111",
