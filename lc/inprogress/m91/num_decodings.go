@@ -19,7 +19,7 @@ func numDecodings(s string) int {
 		if s[i] != '0' {
 			ans[i] += ans[i-1]
 		}
-		if (s[i-1]-'0')*10+(s[i]-'0') < 26 && s[i-1] != '0' {
+		if (s[i-1]-'0')*10+(s[i]-'0') <= 26 && s[i-1] != '0' {
 			if i > 1 {
 				ans[i] += ans[i-2]
 			} else {
