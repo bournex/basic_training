@@ -9,9 +9,16 @@ package h41
 func firstMissingPositive(nums []int) int {
 	n := len(nums)
 	for i := 0; i < n; i++ {
+		if nums[i] == -1 {
+			continue
+		}
+		if nums[i] == i+1 {
+			continue
+		}
+
 		idx := nums[i]
 		nums[i] = -1
-		for idx > 0 && idx <= n && idx != nums[idx-1] {
+		for idx > 0 && idx <= n && idx != -1 && idx != nums[idx-1] {
 			idx, nums[idx-1] = nums[idx-1], idx
 		}
 	}

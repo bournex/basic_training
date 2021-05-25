@@ -11,6 +11,18 @@ func TestFirstMissingPositive(t *testing.T) {
 		Expect int
 	}{
 		{
+			[]int{1, 1},
+			2,
+		},
+		{
+			[]int{-1, 2, 1, -3, 5},
+			3,
+		},
+		{
+			[]int{-1, -2},
+			1,
+		},
+		{
 			[]int{1, 2, 0},
 			3,
 		},
