@@ -1,5 +1,11 @@
 package chapterone
 
+// 工厂模型
+//	面向对象的三个核心：封装、继承、多态
+//	封装通过struct实现
+//	继承与c++、java稍有区别，go不支持struct直接从其他struct继承，而是子类内嵌父类的方式，继承父类的方法和成员
+//	多态通过interface和struct实现
+
 type Operation interface {
 	SetA(float64)
 	SetB(float64)
