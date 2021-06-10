@@ -1,6 +1,11 @@
-package chaptertwo
+package chapter2
 
 import "math"
+
+// 策略模式
+//	将工厂模式中的抽象类、实体类封装到上下文类中，对使用者不可见，使用者仅关注上下文类的功能
+//	对比工厂模式，进一步将实现与使用者隔离开，封装变化，有利于独立测试
+//	不足是添加新算法时，依然需要重编译上下文类，一个改善方式是反射，具体见chapter_fifteen
 
 const (
 	StrategyTypeOne   = "strategy_one"

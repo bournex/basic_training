@@ -1,4 +1,4 @@
-package chaptertwo
+package chapter2
 
 import (
 	"fmt"
@@ -28,6 +28,18 @@ func TestStrategy(t *testing.T) {
 			300,
 			StrategyTypeThree,
 			250,
+			"50￥ off for each 200￥",
+		},
+		{
+			150,
+			StrategyTypeThree,
+			150,
+			"50￥ off for each 200￥",
+		},
+		{
+			500,
+			StrategyTypeThree,
+			400,
 			"50￥ off for each 200￥",
 		},
 	}
