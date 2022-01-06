@@ -37,7 +37,7 @@ func solveNQueens(n int) [][]string {
 					}
 					result = append(result, temp)
 				} else {
-					backtrace(line + 1)
+					backtrace(line + 1) // 去下一行
 				}
 				v[i], x1[i-line+n-1], x2[line+i] = false, false, false
 				cnt--
@@ -75,9 +75,9 @@ func solveNQueens1(n int) [][]string {
 			cnt++
 			v[j], h[i], x1[j-i+n-1], x2[i+j] = true, true, true, true
 			if j+1 < n {
-				backtrace(i, j+1)
+				backtrace(i, j+1) // 后移
 			} else if i+1 < n {
-				backtrace(i+1, 0)
+				backtrace(i+1, 0) // 换行
 			} else if cnt == n {
 				// 到达棋盘右下角，且已经安排完所有的Queen，记录当前棋盘
 				var temp []string
